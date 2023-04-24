@@ -2,10 +2,18 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//test branch;
+
 class Animal
 {
 public:
+	string doSomething()
+	{
+		return "Something";
+	}
+	string doVoice()
+	{
+		return voice();
+	}
 	string voice()
 	{
 		return "Silence";
@@ -19,10 +27,9 @@ public:
 class Cat : public Animal
 {
 public:
-	int* tmp;
-	Cat()
+	string doSomething()
 	{
-		tmp = new int[8];
+		return "CatSomething";
 	}
 	string voice()
 	{
@@ -31,13 +38,20 @@ public:
 	~Cat()
 	{
 		cout << "~Cat()" << endl;
-		delete[] tmp;
 	}
 };
 
 class AnimalCorrect
 {
 public:
+	virtual string doSomething()
+	{
+		return "Something";
+	}
+	string doVoice()
+	{
+		return voice();
+	}
 	virtual string voice()
 	{
 		return "Silence";
@@ -45,5 +59,22 @@ public:
 	virtual ~AnimalCorrect()
 	{
 		cout << "~Animal" << endl;
+	}
+};
+
+class CatCorrect : public AnimalCorrect
+{
+public:
+	string doSomething()
+	{
+		return "CatSomething";
+	}
+	string voice() override
+	{
+		return "Meow";
+	}
+	~CatCorrect() override
+	{
+		cout << "~Cat()" << endl;
 	}
 };

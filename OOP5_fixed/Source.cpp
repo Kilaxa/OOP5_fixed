@@ -1,31 +1,48 @@
-// Cоздать в классе-предке виртуальный конструктор и виртуальный деструктор, зачем нужен виртуальный деструктор и как он работает?
-// Если метод не виртуальный, то при создании массива предка, наполененного потомками при вызове метода элемента, будет вызван метод предка, а не потомка.
 #include <vector>
 #include "Animals.h"
 using namespace std;
 
-int main()
+int main() 
 {
-	vector<Animal*> animals(2);
-	animals[0] = new Animal();
-	animals[1] = new Cat();
-	cout << "Non Virtual:" << endl;
-	for (auto someAnimal : animals) {
-		cout << someAnimal->voice() << endl;
+	// В методе1 базового класса вызывается метод2, который определен в этом же классе как невиртуальный, у класса-потомка метод2 переопределен: что происходит при вызове метода1 у класса-потомка?
+	// Класс потомок возвращает в методе1 вывод метода2 класса предка, а не потомка.
+	{
+		Animal animal;
+		Cat cat;
+		cout << cat.doVoice() << endl;
 	}
-	delete animals[0];
-	delete animals[1];
-	cout << endl;
+	cout << "\n\n\n";
+	// В методе1 базового класса вызывается метод2, который определен в этом же классе как виртуальный, у класса-потомка метод2 переопределен: что происходит при вызове метода1 у класса-потомка?
+	// В данном случае класс потомок возвращает в методе1 вывод метода уже класса потомка.
+	{
+		AnimalCorrect animal;
+		CatCorrect cat;
+		cout << cat.doVoice() << endl;
+	}
+	cout << "\n\n\n";
+	// В базовом классе объявить метод невиртуальный, а в классе-потомке объявить метод с таким же именем: какой метод будет вызываться при обращении к объекту через указатель на базовый класс, через указатель на класс-потомок?
+	// В первом случае, вызовется метод класса предка, что по сути своей полиморфизма в себе никакого не несёт, во втором случае вызовется уже переопределенный в классе-потомке метод, что верно.
+	{
+		Animal *animal = new Cat;
+		Cat* cat = new Cat;
 
-	vector<AnimalCorrect*> correctAnimals(2);
-	correctAnimals[0] = new AnimalCorrect();
-	correctAnimals[1] = new CatCorrect();
-	cout << "Virtual:" << endl;
-	for (auto someAnimal : correctAnimals) {
-		cout << someAnimal->voice() << endl;
+		cout << animal->doSomething() << endl;
+		cout << cat->doSomething() << endl;
+		delete animal;
+		delete cat;
 	}
-	delete correctAnimals[0];
-	delete correctAnimals[1];
-	cout << endl;
+	cout << "\n\n\n";
+	// В базовом классе объявить метод виртуальный, а в классе-потомке объявить метод с таким же именем: какой метод будет вызываться при обращении к объекту через указатель на базовый класс, через указатель на класс-потомок?
+	// Здесь в обоих случаях уже вызовется метод класса потомка.
+	{
+		AnimalCorrect* animal = new CatCorrect();
+		CatCorrect* cat = new CatCorrect;
+
+		cout << animal->doSomething() << endl;
+		cout << cat->doSomething() << endl;
+		delete animal;
+		delete cat;
+	}
+
 	return 0;
 }
