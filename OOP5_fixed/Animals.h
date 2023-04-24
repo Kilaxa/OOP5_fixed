@@ -19,11 +19,6 @@ public:
 class Cat : public Animal
 {
 public:
-	int* tmp;
-	Cat()
-	{
-		tmp = new int[8];
-	}
 	string voice()
 	{
 		return "Meow";
@@ -31,7 +26,6 @@ public:
 	~Cat()
 	{
 		cout << "~Cat()" << endl;
-		delete[] tmp;
 	}
 };
 
@@ -51,11 +45,6 @@ public:
 class CatCorrect : public AnimalCorrect
 {
 public:
-	int* tmp;
-	CatCorrect()
-	{
-		tmp = new int[8];
-	}
 	string voice() override
 	{
 		return "Meow";
@@ -63,6 +52,5 @@ public:
 	~CatCorrect() override
 	{
 		cout << "~Cat()" << endl;
-		delete[] tmp;
 	}
 };
