@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-
+//test branch;
 class Animal
 {
 public:
@@ -45,24 +45,5 @@ public:
 	virtual ~AnimalCorrect()
 	{
 		cout << "~Animal" << endl;
-	}
-};
-
-class CatCorrect : public AnimalCorrect
-{
-public:
-	int* tmp;
-	CatCorrect()
-	{
-		tmp = new int[8];
-	}
-	string voice() override
-	{
-		return "Meow";
-	}
-	~CatCorrect() override
-	{
-		cout << "~Cat()" << endl;
-		delete[] tmp;
 	}
 };
