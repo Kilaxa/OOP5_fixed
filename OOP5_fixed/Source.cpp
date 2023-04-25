@@ -1,25 +1,26 @@
 #include <vector>
 #include "Animals.h"
+using namespace std;
 
 int main() {
-	std::vector<Animal*> animals(5);
+	vector<Animal*> animals(5);
 	animals[0] = new Cat();
 	animals[1] = new Dog();
 	animals[2] = new Cat();
 	animals[3] = new Dog();
-	animals[4] = new MaineCoon();
-	std::cout << "first try:" << std::endl;
+	animals[4] = new Kitty();
+	cout << "first try:" << endl;
 	for (auto ani : animals) {
 		if (ani->classname() == "Cat") {
 			Cat* tmp = static_cast<Cat*>(ani);
-			std::cout << tmp->catchMouse() << std::endl;
+			cout << tmp->catchMouse() << endl;
 		}
 	}
-	std::cout << "second try:" << std::endl;
+	cout << "second try:" << endl;
 	for (auto ani : animals) {
 		if (ani->isA("Cat")) {
 			Cat* tmp = static_cast<Cat*>(ani);
-			std::cout << tmp->catchMouse() << std::endl;
+			cout << tmp->catchMouse() << endl;
 		}
 	}
 

@@ -1,14 +1,16 @@
 #pragma once
 #include <iostream>
 #include <string>
+using namespace std;
+
 class Animal
 {
 public:
-	virtual bool isA(const std::string& Name)
+	virtual bool isA(const string& Name)
 	{
 		return Name == "Animal";
 	}
-	virtual std::string classname()
+	virtual string classname()
 	{
 		return "Animal";
 	}
@@ -18,18 +20,18 @@ public:
 class Cat : public Animal
 {
 public:
-	bool isA(const std::string& Name) override
+	bool isA(const string& Name) override
 	{
 		return Name == "Cat" || Animal::isA(Name);
 	}
 
-	std::string classname() override
+	string classname() override
 	{
 		return "Cat";
 	}
 
-	std::string catchMouse() {
-		return "got it";
+	string catchMouse() {
+		return "meeeow";
 	}
 	~Cat() override
 	{
@@ -37,19 +39,19 @@ public:
 	}
 };
 
-class MaineCoon : public Cat
+class Kitty : public Cat
 {
 public:
-	bool isA(const std::string& Name) override
+	bool isA(const string& Name) override
 	{
-		return Name == "MainCoon" || Cat::isA(Name);
+		return Name == "Kitty" || Cat::isA(Name);
 	}
 
-	std::string classname() override
+	string classname() override
 	{
-		return "MainCoon";
+		return "Kitty";
 	}
-	~MaineCoon() override
+	~Kitty() override
 	{
 
 	}
@@ -59,12 +61,12 @@ public:
 class Dog : public Animal
 {
 public:
-	bool isA(const std::string& Name) override
+	bool isA(const string& Name) override
 	{
 		return Name == "Dog" || Animal::isA(Name);
 	}
 
-	std::string classname() override
+	string classname() override
 	{
 		return "Dog";
 	}
