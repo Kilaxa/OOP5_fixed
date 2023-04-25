@@ -1,22 +1,24 @@
 #pragma once
 #include <iostream>
 #include <string>
+using namespace std;
+
 class Animal
 {
 public:
 	Animal()
 	{
-		std::cout << "Constructor --- Animal" << std::endl;
+		cout << "Constructor --- Animal" << endl;
 	}
 
 	virtual void talk()
 	{
-		std::cout << std::endl;
+		cout << endl;
 	}
 
 	virtual ~Animal()
 	{
-		std::cout << "Destructor --- Animal" << std::endl;
+		cout << "Destructor --- Animal" << endl;
 	}
 };
 
@@ -25,17 +27,17 @@ class Cat : public Animal
 public:
 	Cat()
 	{
-		std::cout << "Constructor --- Cat" << std::endl;
+		cout << "Constructor --- Cat" << endl;
 	}
 
 	void talk() override
 	{
-		std::cout << "Meow meow" << std::endl;
+		cout << "Meow meow" << endl;
 	}
 
 	~Cat() override
 	{
-		std::cout << "Destructor --- Cat" << std::endl;
+		cout << "Destructor --- Cat" << endl;
 	}
 };
 
@@ -44,16 +46,16 @@ class Dog : public Animal
 public:
 	Dog()
 	{
-		std::cout << "Constructor --- Dog" << std::endl;
+		cout << "Constructor --- Dog" << endl;
 	}
 
 	void talk() override
 	{
-		std::cout << "Bow-wow" << std::endl;
+		cout << "Bow-wow" << endl;
 	}
 
 	~Dog() override
 	{
-		std::cout << "Destructor --- Dog" << std::endl;
+		cout << "Destructor --- Dog" << endl;
 	}
 };
