@@ -1,31 +1,42 @@
-// Cоздать в классе-предке виртуальный конструктор и виртуальный деструктор, зачем нужен виртуальный деструктор и как он работает?
-// ≈сли метод не виртуальный, то при создании массива предка, наполененного потомками при вызове метода элемента, будет вызван метод предка, а не потомка.
-#include <vector>
+// ƒл€ изучени€ умных указателей необходимо создать объекты, управл€емые с помощью unique_ptr и shared_ptr (с помощью make_unique и make_shared и/или без них), помещать их в переменные, передавать их в функции, возвращать их из функций и демонстрировать, как они вли€ют на врем€ жизни объекта, которым управл€ют.
 #include "Animals.h"
-using namespace std;
+#include <vector>
+
+void method(Animal* who)
+{
+	who->talk();
+	//delete who; - ошибка
+}
+
+void method(std::shared_ptr<Animal> who)
+{
+	who->talk();
+	//delete who; - ошибка
+}
+
+std::unique_ptr<Animal> makeCat()
+{
+	//	Wrong
+	//return new Cat();
+	return std::make_unique<Cat>();
+}
 
 int main()
 {
-	vector<Animal*> animals(2);
-	animals[0] = new Animal();
-	animals[1] = new Cat();
-	cout << "Non Virtual:" << endl;
-	for (auto someAnimal : animals) {
-		cout << someAnimal->voice() << endl;
+	std::unique_ptr<Animal> cat = std::make_unique<Cat>();
+	std::shared_ptr<Animal> dog = std::make_unique<Dog>();
+	//	Wrong
+	//method(cat);
+	//	Correct
+	method(cat.get());
+	{
+		//	Wrong
+		//std::unique_ptr<Animal> tmp_cat = cat;
+		auto tmp_cat = makeCat();
+		std::shared_ptr<Animal> tmp_dog = dog;
 	}
-	delete animals[0];
-	delete animals[1];
-	cout << endl;
-
-	vector<AnimalCorrect*> correctAnimals(2);
-	correctAnimals[0] = new AnimalCorrect();
-	correctAnimals[1] = new CatCorrect();
-	cout << "Virtual:" << endl;
-	for (auto someAnimal : correctAnimals) {
-		cout << someAnimal->voice() << endl;
-	}
-	delete correctAnimals[0];
-	delete correctAnimals[1];
-	cout << endl;
+	//delete *tmp_cat, tmp_dog(но не *tmp_dog)
+	method(dog);
 	return 0;
 }
+//delete *cat, *dog

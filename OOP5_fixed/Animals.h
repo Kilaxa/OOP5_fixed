@@ -1,56 +1,59 @@
 #pragma once
 #include <iostream>
 #include <string>
-using namespace std;
-
 class Animal
 {
 public:
-	string voice()
+	Animal()
 	{
-		return "Silence";
+		std::cout << "Constructor --- Animal" << std::endl;
 	}
-	~Animal()
+
+	virtual void talk()
 	{
-		cout << "~Animal()" << endl;
+		std::cout << std::endl;
+	}
+
+	virtual ~Animal()
+	{
+		std::cout << "Destructor --- Animal" << std::endl;
 	}
 };
 
 class Cat : public Animal
 {
 public:
-	string voice()
+	Cat()
 	{
-		return "Meow";
+		std::cout << "Constructor --- Cat" << std::endl;
 	}
-	~Cat()
+
+	void talk() override
 	{
-		cout << "~Cat()" << endl;
+		std::cout << "Meow meow" << std::endl;
+	}
+
+	~Cat() override
+	{
+		std::cout << "Destructor --- Cat" << std::endl;
 	}
 };
 
-class AnimalCorrect
+class Dog : public Animal
 {
 public:
-	virtual string voice()
+	Dog()
 	{
-		return "Silence";
+		std::cout << "Constructor --- Dog" << std::endl;
 	}
-	virtual ~AnimalCorrect()
-	{
-		cout << "~Animal" << endl;
-	}
-};
 
-class CatCorrect : public AnimalCorrect
-{
-public:
-	string voice() override
+	void talk() override
 	{
-		return "Meow";
+		std::cout << "Bow-wow" << std::endl;
 	}
-	~CatCorrect() override
+
+	~Dog() override
 	{
-		cout << "~Cat()" << endl;
+		std::cout << "Destructor --- Dog" << std::endl;
 	}
 };
