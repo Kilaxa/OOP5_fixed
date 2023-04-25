@@ -1,56 +1,76 @@
 #pragma once
 #include <iostream>
 #include <string>
-using namespace std;
-
 class Animal
 {
 public:
-	string voice()
+	virtual bool isA(const std::string& Name)
 	{
-		return "Silence";
+		return Name == "Animal";
 	}
-	~Animal()
+	virtual std::string classname()
 	{
-		cout << "~Animal()" << endl;
+		return "Animal";
 	}
+	virtual ~Animal() {}
 };
 
 class Cat : public Animal
 {
 public:
-	string voice()
+	bool isA(const std::string& Name) override
 	{
-		return "Meow";
+		return Name == "Cat" || Animal::isA(Name);
 	}
-	~Cat()
+
+	std::string classname() override
 	{
-		cout << "~Cat()" << endl;
+		return "Cat";
+	}
+
+	std::string catchMouse() {
+		return "got it";
+	}
+	~Cat() override
+	{
+
 	}
 };
 
-class AnimalCorrect
+class MaineCoon : public Cat
 {
 public:
-	virtual string voice()
+	bool isA(const std::string& Name) override
 	{
-		return "Silence";
+		return Name == "MainCoon" || Cat::isA(Name);
 	}
-	virtual ~AnimalCorrect()
+
+	std::string classname() override
 	{
-		cout << "~Animal" << endl;
+		return "MainCoon";
+	}
+	~MaineCoon() override
+	{
+
 	}
 };
 
-class CatCorrect : public AnimalCorrect
+
+class Dog : public Animal
 {
 public:
-	string voice() override
+	bool isA(const std::string& Name) override
 	{
-		return "Meow";
+		return Name == "Dog" || Animal::isA(Name);
 	}
-	~CatCorrect() override
+
+	std::string classname() override
 	{
-		cout << "~Cat()" << endl;
+		return "Dog";
+	}
+
+	~Dog() override
+	{
+
 	}
 };
