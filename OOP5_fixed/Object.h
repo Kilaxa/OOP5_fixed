@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+using namespace std;
 
 size_t count_Base = 0, count_Desc = 0;;
 
@@ -11,25 +12,25 @@ private:
 public:
 	Base() : idB(count_Base++)
 	{
-		std::cout << "Constructor withOUT parameters - Base " << idB << std::endl;
+		cout << "Constructor withOUT parameters - Base " << idB << endl;
 	}
 
-	Base(const std::string& s) : idB(count_Base++)
+	Base(const string& s) : idB(count_Base++)
 	{
-		std::cout << "Constructor with parameter ----- Base " << idB << " " << s << std::endl;
+		cout << "Constructor with parameter ----- Base " << idB << " " << s << endl;
 	}
 	Base(const Base* a) : idB(count_Base++)
 	{
-		std::cout << "Constructor with parameter ----- Base " << idB << std::endl;
+		cout << "Constructor with parameter ----- Base " << idB << endl;
 	}
 	Base(const Base& a) : idB(count_Base++)
 	{
-		std::cout << "Copy constructor --------------- Base " << idB << std::endl;
+		cout << "Copy constructor --------------- Base " << idB << endl;
 	}
 
 	~Base()
 	{
-		std::cout << "Destructor --------------------- Base " << idB << std::endl;
+		cout << "Destructor --------------------- Base " << idB << endl;
 		--count_Base;
 	}
 };
@@ -41,25 +42,25 @@ private:
 public:
 	Desc() : idD(count_Desc++)
 	{
-		std::cout << "Constructor withOUT parameters - Desc " << idD << std::endl;
+		cout << "Constructor withOUT parameters - Desc " << idD << endl;
 	}
 
-	Desc(const std::string& s) : idD(count_Desc++)
+	Desc(const string& s) : idD(count_Desc++)
 	{
-		std::cout << "Constructor with parameter ----- Desc " << idD << " " << s << std::endl;
+		cout << "Constructor with parameter ----- Desc " << idD << " " << s << endl;
 	}
 	Desc(const Desc* a) : idD(count_Desc++)
 	{
-		std::cout << "Constructor with parameter ----- Desc " << idD << std::endl;
+		cout << "Constructor with parameter ----- Desc " << idD << endl;
 	}
 	Desc(const Desc& a) : idD(count_Desc++)
 	{
-		std::cout << "Copy constructor --------------- Desc " << idD << std::endl;
+		cout << "Copy constructor --------------- Desc " << idD << endl;
 	}
 
 	~Desc()
 	{
-		std::cout << "Destructor --------------------- Desc " << idD << std::endl;
+		cout << "Destructor --------------------- Desc " << idD << endl;
 		--count_Desc;
 	}
 };
