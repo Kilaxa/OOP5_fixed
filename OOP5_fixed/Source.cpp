@@ -44,7 +44,7 @@ Base& out5()
 }
 Base& out6()
 {
-	Base* po = new Base("out2");
+	Base* po = new Base("out6");
 	return *po;
 }
 
@@ -65,9 +65,9 @@ int main() {
 	delete d;
 	delete b;
 
+	cout << "\n";
 	Base o;
 	Base* po;
-	cout << "\n";
 	cout << "\n\n----Start out---" << endl;
 	o = out1();
 	o = out2();
@@ -75,7 +75,7 @@ int main() {
 	po = out4();
 	o = out5();
 	o = out6();
-	cout << "----End   out----\n\n" << endl;
+	cout << "----End   out----\n" << endl;
 
 	return 0;
 }
