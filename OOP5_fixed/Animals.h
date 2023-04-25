@@ -30,7 +30,8 @@ public:
 		return "Cat";
 	}
 
-	string catchMouse() {
+	string catchMouse() 
+	{
 		return "meeeow";
 	}
 	~Cat() override
