@@ -1,31 +1,80 @@
-// Cоздать в классе-предке виртуальный конструктор и виртуальный деструктор, зачем нужен виртуальный деструктор и как он работает?
-// Если метод не виртуальный, то при создании массива предка, наполененного потомками при вызове метода элемента, будет вызван метод предка, а не потомка.
 #include <vector>
-#include "Animals.h"
-using namespace std;
+#include "Object.h"
 
-int main()
+void in1(Base a)
 {
-	vector<Animal*> animals(2);
-	animals[0] = new Animal();
-	animals[1] = new Cat();
-	cout << "Non Virtual:" << endl;
-	for (auto someAnimal : animals) {
-		cout << someAnimal->voice() << endl;
-	}
-	delete animals[0];
-	delete animals[1];
-	cout << endl;
+	std::cout << "Call in1" << std::endl;
+}
 
-	vector<AnimalCorrect*> correctAnimals(2);
-	correctAnimals[0] = new AnimalCorrect();
-	correctAnimals[1] = new CatCorrect();
-	cout << "Virtual:" << endl;
-	for (auto someAnimal : correctAnimals) {
-		cout << someAnimal->voice() << endl;
-	}
-	delete correctAnimals[0];
-	delete correctAnimals[1];
-	cout << endl;
+void in2(Base* a)
+{
+	std::cout << "Call in2" << std::endl;
+}
+
+void in3(Base& a)
+{
+	std::cout << "Call in3" << std::endl;
+}
+
+Base out1()
+{
+	Base o("out1");
+	return o;
+}
+Base out2()
+{
+	Base* po = new Base("out2");
+	return *po;
+}
+Base* out3()
+{
+	Base o("out3");
+	return &o;
+}
+Base* out4()
+{
+	Base* po = new Base("out4");
+	return po;
+}
+Base& out5()
+{
+	Base o("out5");
+	return o;
+}
+Base& out6()
+{
+	Base* po = new Base("out2");
+	return *po;
+}
+
+int main() {
+	Base* b = new Base();
+	Desc* d = new Desc();
+
+	std::cout << "----Start in----" << std::endl;
+	in1(*b);
+	in2(b);
+	in3(*b);
+
+	in1(*d);
+	in2(d);
+	in3(*d);
+	std::cout << "----End   in----" << std::endl;
+
+	delete d;
+	delete b;
+
+	Base o;
+	Base* po;
+
+	std::cout << "----Start out---" << std::endl;
+	o = out1();
+	o = out2();
+	po = out3();
+	po = out4();
+	o = out5();
+	o = out6();
+	std::cout << "----End   out----" << std::endl;
+
 	return 0;
 }
